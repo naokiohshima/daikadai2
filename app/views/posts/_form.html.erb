@@ -17,6 +17,25 @@
   <%= f.label "コメント" %>
   <%= f.text_field :content, class: 'form-control' %>
   <br>
+  <div class="field">
+    <% if @post.image? %>
+      <div class="thumbnail">
+        <%= image_tag @post.image.url %>
+      </div>
+    <% end %><br>
+    <%= f.label "画像" %><br>
+    <%= f.file_field :image %>
+    <%= f.hidden_field :image_cache %>
+  </div>
+  <div class="field">
+    <!-- 既存レコード(DBに保存されている)かつ、画像が存在する場合 -->
+    <% if @post.persisted? && @post.image? %>
+      <label>
+        <%= f.check_box :remove_image %>
+        画像を削除
+      </label>
+    <% end %>
+  </div>
   <%= f.submit %>
 
 <% end %>
