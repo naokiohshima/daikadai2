@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
   resources :posts, only: [:index, :new, :create, :edit, :update, :destroy] do
    member do
     post :confirm
@@ -9,7 +10,12 @@ Rails.application.routes.draw do
   if Rails.env.development?
    mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
-  
+
+  devise_for :users, controllers: {
+    registrations: "users/registrations",
+    omniauth_callbacks: "users/omniauth_callbacks"
+}
+
    root 'top#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
