@@ -1,4 +1,4 @@
-class gazouUploader < CarrierWave::Uploader::Base
+class GazouUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
