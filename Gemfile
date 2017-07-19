@@ -70,3 +70,5 @@ end
   gem 'mini_magick'
 
   gem 'rails_12factor', group: :production
+
+  gem 'rmagick'
